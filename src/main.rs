@@ -1,28 +1,35 @@
 use anyhow::{Context, Result};
+use std::process::{Command, Stdio};
 
-// Usage: your_docker.sh run <image> <command> <arg1> <arg2> ...
 fn main() -> Result<()> {
+    println!("Logs from your program will appear here!");
+
     let args: Vec<_> = std::env::args().collect();
-    print!("args: {:?}", args);
     let command = &args[3];
     let command_args = &args[4..];
-    let output = std::process::Command::new(command)
+
+    let mut child = Command::new(command)
         .args(command_args)
-        .stdout(std::process::Stdio::inherit())
-        .stderr(std::process::Stdio::inherit())
-        .output()
+        .stdout(Stdio::piped()) // Capture stdout
+        .stderr(Stdio::piped()) // Capture stderr
+        .spawn()
         .with_context(|| {
             format!(
-                "Tried to run '{}' with arguments {:?}",
+                "Failed to run '{}' with arguments {:?}",
                 command, command_args
             )
         })?;
 
+    let output = child.wait_with_output()?;
+
     if output.status.success() {
         let std_out = std::str::from_utf8(&output.stdout)?;
-        println!("{}", std_out);
+        println!("Stdout:\n{}", std_out);
+
+        let std_err = std::str::from_utf8(&output.stderr)?;
+        println!("Stderr:\n{}", std_err);
     } else {
-        std::process::exit(output.status.code().unwrap_or(1))
+        std::process::exit(1);
     }
 
     Ok(())
