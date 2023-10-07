@@ -21,7 +21,7 @@ fn main() -> Result<()> {
     if output.status.success() {
         std::io::stdout().write_all(&output.stdout).unwrap();
     } else {
-        std::process::exit(output.status);
+        std::process::exit(output.status.code().unwrap_or(1));
     }
 
     Ok(())
