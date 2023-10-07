@@ -8,6 +8,8 @@ fn main() -> Result<()> {
     let command_args = &args[4..];
     let output = std::process::Command::new(command)
         .args(command_args)
+        .stdout(std::process::Stdio::inherit())
+        .stderr(std::process::Stdio::inherit())
         .output()
         .with_context(|| {
             format!(
@@ -18,11 +20,9 @@ fn main() -> Result<()> {
 
     if output.status.success() {
         let std_out = std::str::from_utf8(&output.stdout)?;
-        print!("{}", std_out);
-        let std_err = std::str::from_utf8(&output.stderr)?;
-        eprint!("{}", std_err);
+        println!("{}", std_out);
     } else {
-        std::process::exit(1);
+        std::process::exit(output.status.code().unwrap_or(1))
     }
 
     Ok(())
