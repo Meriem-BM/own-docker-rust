@@ -1,18 +1,5 @@
 [![progress-banner](https://backend.codecrafters.io/progress/docker/f568baf8-f7a8-4b17-824b-02e98cf86802)](https://app.codecrafters.io/users/Meriem-BM?r=2qF)
-
-This is a starting point for Rust solutions to the
-["Build Your Own Docker" Challenge](https://codecrafters.io/challenges/docker).
-
-In this challenge, you'll build a program that can pull an image from
-[Docker Hub](https://hub.docker.com/) and execute commands in it. Along the way,
-we'll learn about [chroot](https://en.wikipedia.org/wiki/Chroot),
-[kernel namespaces](https://en.wikipedia.org/wiki/Linux_namespaces), the
-[docker registry API](https://docs.docker.com/registry/spec/api/) and much more.
-
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
-
-# Passing the first stage
+# 1st stage
 
 The entry point for your Docker implementation is `src/main.rs`. Study and
 uncomment the relevant code, and push your changes to pass the first stage:
@@ -25,7 +12,7 @@ git push origin master
 
 That's all!
 
-# Stage 2 & beyond
+# 2nd stage
 
 Note: This section is for stages 2 and beyond.
 
