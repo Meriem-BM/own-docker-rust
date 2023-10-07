@@ -1,4 +1,3 @@
-[![progress-banner](https://backend.codecrafters.io/progress/docker/f568baf8-f7a8-4b17-824b-02e98cf86802)](https://app.codecrafters.io/users/Meriem-BM?r=2qF)
 # 1st stage
 
 The entry point for your Docker implementation is `src/main.rs`. Study and
