@@ -1,20 +1,4 @@
-# 1st stage
-
-The entry point for your Docker implementation is `src/main.rs`. Study and
-uncomment the relevant code, and push your changes to pass the first stage:
-
-```sh
-git add .
-git commit -m "pass 1st stage" # any msg
-git push origin master
-```
-
-That's all!
-
-# 2nd stage
-
-Note: This section is for stages 2 and beyond.
-
+# Docker
 You'll use linux-specific syscalls in this challenge. so we'll run your code
 _inside_ a Docker container.
 
